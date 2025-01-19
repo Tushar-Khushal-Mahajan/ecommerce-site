@@ -1,3 +1,24 @@
 spring:
      application:
            name: ecommerce-site
+
+     datasource:
+          url: jdbc:postgresql://localhost:5432/ecommerce
+          username: postgres
+          password: "[tushar]PG"
+     data:
+        jdbc:
+            dialect: org.hibernate.dialect.PostgresPlusDialect    
+     jpa:
+          show-sql: true
+          hibernate:
+             ddl-auto: update
+
+     thymeleaf:
+          prefix: classpath:/templates/
+          suffix: .html
+#			 spring.thymeleaf.prefix=classpath:/templates/
+#			 spring.thymeleaf.suffix=.html
+#			 spring.thymeleaf.mode=HTML
+#			 spring.thymeleaf.encoding=UTF-8
+#			 spring.thymeleaf.cache=false
