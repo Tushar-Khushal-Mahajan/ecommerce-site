@@ -1,8 +1,153 @@
-<html>
-<head>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ecommerce</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+
+	<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
+
 <body>
-	<h1>This is home page</h1>
+
+	<!-- Navbar -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+		<!-- <div class="container"> -->
+		<a class="navbar-brand" href="#">E-Commerce</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+			aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				<li class="nav-item">
+					<a class="nav-link active" aria-current="page" href="#">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Login</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Register</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Me</a>
+				</li>
+			</ul>
+			<form class="d-flex">
+				<input class="form-control me-2 search-bar" type="search" placeholder="Search" aria-label="Search">
+				<button class="btn btn-outline-light" type="submit">Search</button>
+			</form>
+		</div>
+		<!-- </div> -->
+	</nav>
+	<!-- Landing Image Section -->
+	<section class="hero-section">
+		<div class="hero-content">
+			<h1>Welcome to Our E-commerce Store</h1>
+			<p>Your favorite products, just a click away!</p>
+		</div>
+	</section>
+
+	<!-- CARDS SECTION -->
+	<section class="mycontainer card-container">
+		<div class="cards">
+			<div class="img-section">
+				<img th:src="@{/images/computer-img.png}" alt="">
+			</div>
+			<div class="body-section">
+				<p>This is content of 1st card</p>
+				<b>100rs</b> <del><b class="text-secondary">150rs</b></del>
+			</div>
+		</div>
+		<div class="cards">
+			<div class="img-section">
+				<img th:src="@{/images/laptop-img.png}" alt="">
+			</div>
+			<div class="body-section">
+				<p>This is content of 1st card</p>
+				<b>100rs</b> <del><b class="text-secondary">150rs</b></del>
+			</div>
+		</div>
+		<div class="cards">
+			<div class="img-section">
+				<img th:src="@{/images/mobile-img.png}" alt="">
+			</div>
+			<div class="body-section">
+				<p>This is content of 1st card</p>
+				<b>100rs</b> <del><b class="text-secondary">150rs</b></del>
+			</div>
+		</div>
+		<div class="cards">
+			<div class="img-section">
+				<img th:src="@{/images/computer-img.png}" alt="">
+			</div>
+			<div class="body-section">
+				<p>This is content of 1st card</p>
+				<b>100rs</b> <del><b class="text-secondary">150rs</b></del>
+			</div>
+		</div>
+		<div class="cards">
+			<div class="img-section">
+				<img th:src="@{/images/mobile-img.png}" alt="">
+			</div>
+			<div class="body-section">
+				<p>This is content of 1st card</p>
+				<b>100rs</b> <del><b class="text-secondary">150rs</b></del>
+			</div>
+		</div>
+		<div class="cards">
+			<div class="img-section">
+				<img th:src="@{/images/laptop-img.png}" alt="">
+			</div>
+			<div class="body-section">
+				<p>This is content of 1st card</p>
+				<b>100rs</b> <del><b class="text-secondary">150rs</b></del>
+			</div>
+		</div>
+		<div class="cards">
+			<div class="img-section">
+				<img th:src="@{/images/mobile-img.png}" alt="">
+			</div>
+			<div class="body-section">
+				<p>This is content of 1st card</p>
+				<b>100rs</b> <del><b class="text-secondary">150rs</b></del>
+			</div>
+		</div>
+		<div class="cards">
+			<div class="img-section">
+				<img th:src="@{/images/computer-img.png}" alt="">
+			</div>
+			<div class="body-section">
+				<p>This is content of 1st card</p>
+				<b>100rs</b> <del><b class="text-secondary">150rs</b></del>
+			</div>
+		</div>
+		<div class="cards">
+			<div class="img-section">
+				<img th:src="@{/images/laptop-img.png}" alt="">
+			</div>
+			<div class="body-section">
+				<p>This is content of 1st card</p>
+				<b>100rs</b> <del><b class="text-secondary">150rs</b></del>
+			</div>
+		</div>
+		<div class="cards">
+			<div class="img-section">
+				<img th:src="@{/images/computer-img.png}" alt="">
+			</div>
+			<div class="body-section">
+				<p>This is content of 1st card</p>
+				<b>100rs</b> <del><b class="text-secondary">150rs</b></del>
+			</div>
+		</div>
+	</section>
+	<!-- END CARDS SECTION -->
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
 </body>
+
 </html>
