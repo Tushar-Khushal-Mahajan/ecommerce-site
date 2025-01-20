@@ -1,0 +1,60 @@
+body {
+  background-color: rgba(220, 220, 220, 0.333);
+}
+
+.navbar {
+  position: static;
+  transform: translateX(0);
+}
+
+.mycart-section {
+  margin: 50px auto;
+}
+
+.flex-card {
+  display: flex;
+  justify-content: space-around;
+  /* background-color: red; */
+}
+
+.flex-card .cards-section {
+  /* display: flex; */
+  /* background-color: blue; */
+  /* border: 1px solid #dadada; */
+  background-color: white;
+  width: 70%;
+  padding: 10px;
+}
+
+.flex-card .cards-section h5 {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.flex-card .cards-section .cards {
+  display: flex;
+  align-items: center;
+}
+
+.flex-card .cards-section .cards .card-image {
+  width: 200px;
+}
+
+.flex-card .cards-section .cards .card-image img {
+  width: 100%;
+  object-fit: contain;
+  aspect-ratio: 1/1;
+}
+
+.flex-card .cards-section .card-body {
+  width: auto;
+  display: flex;
+  justify-content: space-around;
+  /* background-color: white; */
+}
+
+.flex-card .cart-calc {
+  /* background-color: cyan; */
+  background-color: white;
+  width: 25%;
+  height: fit-content;
+}

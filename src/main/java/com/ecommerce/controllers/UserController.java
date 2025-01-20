@@ -10,4 +10,22 @@ public class UserController {
 
 		return "home";
 	}
+
+	@GetMapping("/product")
+	public String showProductPage() {
+
+		return "product";
+	}
+
+	@GetMapping("/me")
+	public String meSection() {
+
+		return "me";
+	}
+
+	@GetMapping("/purchase")
+	public String purchased() {
+
+		return "purchesed";
+	}
 }

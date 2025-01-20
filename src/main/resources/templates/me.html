@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Me Section</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" th:href="@{/css/commons/style.css}">
+  <link rel="stylesheet" th:href="@{/css/navbar.css}">
+  <link rel="stylesheet" th:href="@{/css/add-to-cart.css}">
+</head>
+
+<body>
+
+  <div th:replace="components/navbar :: navbar"></div>
+  <div class="alert alert-info alert-dismissible fade show" role="alert">
+    <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+  <section class="mycontainer mycart-section">
+
+    <section class="flex-card">
+      <div class="cards-section">
+        <h5>Shopping Cart</h5>
+        <div class="cards">
+          <div class="card-image">
+            <img th:src="@{/images/laptop-img.png}" alt="">
+          </div>
+          <div class="card-body">
+            <div>
+              <h5>This is 1st product</h5>
+              <p class="text-secondary">this is desc</p>
+            </div>
+            <div>
+              <b>100rs</b> <br> <del class=" bold text-secondary">150rs</del>
+            </div>
+
+            <div>
+              <button class="btn btn-outline-danger">Remove <i class="fa fa-trash-o"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="cards">
+          <div class="card-image">
+            <img th:src="@{/images/computer-img.png}" alt="">
+          </div>
+          <div class="card-body">
+            <div>
+              <h5>This is 1st product</h5>
+              <p class="text-secondary">this is desc</p>
+            </div>
+            <div>
+              <b>100rs</b> <br> <del class=" bold text-secondary">150rs</del>
+            </div>
+
+            <div>
+              <button class="btn btn-outline-danger">Remove <i class="fa fa-trash-o"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="cards">
+          <div class="card-image">
+            <img th:src="@{/images/mobile-img.png}" alt="">
+          </div>
+          <div class="card-body">
+            <div>
+              <h5>This is 1st product</h5>
+              <p class="text-secondary">this is desc</p>
+            </div>
+            <div>
+              <b>100rs</b> <br> <del class=" bold text-secondary">150rs</del>
+            </div>
+
+            <div>
+              <button class="btn btn-outline-danger">Remove <i class="fa fa-trash-o"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="cards">
+          <div class="card-image">
+            <img th:src="@{/images/laptop-img.png}" alt="">
+          </div>
+          <div class="card-body">
+            <div>
+              <h5>This is 1st product</h5>
+              <p class="text-secondary">this is desc</p>
+            </div>
+            <div>
+              <b>100rs</b> <br> <del class=" bold text-secondary">150rs</del>
+            </div>
+
+            <div>
+              <button class="btn btn-outline-danger">Remove <i class="fa fa-trash-o"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="cards">
+          <div class="card-image">
+            <img th:src="@{/images/laptop-img.png}" alt="">
+          </div>
+          <div class="card-body">
+            <div>
+              <h5>This is 1st product</h5>
+              <p class="text-secondary">this is desc</p>
+            </div>
+            <div>
+              <b>100rs</b> <br> <del class=" bold text-secondary">150rs</del>
+            </div>
+
+            <div>
+              <button class="btn btn-outline-danger">Remove <i class="fa fa-trash-o"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cart-calc p-5">
+        <table class="table table-borderless">
+          <tr>
+            <th>Total Price</th>
+            <td>1500</td>
+          </tr>
+          <tr>
+            <th>Discount</th>
+            <td>600</td>
+          </tr>
+          <tbody class="border-top">
+            <tr>
+              <th>Total</th>
+              <th>900</th>
+            </tr>
+
+            <tr>
+              <td colspan="2">
+                <button class="mt-3 btn btn-primary w-100">Buy</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </section>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
