@@ -9,12 +9,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.ecommerce.enums.Role;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -37,6 +39,9 @@ public class User implements UserDetails {
 
 	@Enumerated(EnumType.STRING)
 	private Role role;
+
+	@ManyToMany(mappedBy = "users", cascade = CascadeType.ALL)
+	private List<Product> buyedProducts;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

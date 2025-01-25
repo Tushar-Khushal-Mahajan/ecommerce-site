@@ -1,20 +1,24 @@
 package com.ecommerce.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.ecommerce.entities.User;
+import com.ecommerce.services.UserService;
 
 @Controller
+@RequestMapping("/user")
 public class UserController {
-	@GetMapping("/")
-	public String sayHello() {
 
-		return "home";
-	}
+	@Autowired
+	private UserService service;
 
-	@GetMapping("/product")
-	public String showProductPage() {
-
-		return "product";
+	@GetMapping
+	public String user() {
+		return "Hello this is user";
 	}
 
 	@GetMapping("/me")

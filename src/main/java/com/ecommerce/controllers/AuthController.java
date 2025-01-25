@@ -25,7 +25,7 @@ public class AuthController {
 
 	@GetMapping("/register")
 	@ResponseBody
-	public String login() {
+	public String register() {
 
 		String encodePassword = encoder.encode("tushar123");
 
