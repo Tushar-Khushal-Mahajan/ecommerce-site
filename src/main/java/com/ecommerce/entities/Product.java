@@ -1,5 +1,6 @@
 package com.ecommerce.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -23,15 +24,15 @@ import lombok.ToString;
 @ToString
 public class Product {
 
-  @Id
-  private String productId;
-  private String productName;
-  private String productDescription;
-  private int productPrice;
-  private String productImage;
-  private String productCategory;
+	@Id
+	private String productId;
+	private String productName;
+	private String productDescription;
+	private int productPrice;
+	private String productImage;
+	private String productCategory;
 
-  @ManyToMany(cascade = CascadeType.ALL)
-  private List<User> users;
+	@ManyToMany(cascade = CascadeType.ALL)
+	private List<User> users = new ArrayList<User>();
 
 }
