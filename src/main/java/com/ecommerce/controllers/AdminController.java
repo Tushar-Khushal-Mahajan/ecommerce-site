@@ -1,6 +1,10 @@
 package com.ecommerce.controllers;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+import java.util.UUID;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ecommerce.entities.Product;
+import com.ecommerce.helper.FileHelper;
+import com.ecommerce.services.AmazonS3Service;
 import com.ecommerce.services.ProductService;
 
 @Controller
@@ -20,9 +26,11 @@ import com.ecommerce.services.ProductService;
 public class AdminController {
 
 	private ProductService productService;
+	private AmazonS3Service s3Service;
 
-	public AdminController(ProductService productService) {
+	public AdminController(ProductService productService, AmazonS3Service s3Service) {
 		this.productService = productService;
+		this.s3Service = s3Service;
 	}
 
 	@GetMapping
@@ -43,20 +51,26 @@ public class AdminController {
 	public String saveProduct(@ModelAttribute("product") Product product, @RequestParam("img") MultipartFile file)
 			throws IOException {
 
-		System.out.println("SAVED PRODUCT = :" + product);
+		try {
+			System.out.println("SAVED PRODUCT = :" + product);
 
-		System.out.println(file.getContentType());
-		System.out.println(file.getSize());
-		System.out.println(file.getOriginalFilename());
-		System.out.println(file.getBytes());
+			// for s3
+			FileHelper fileHelper = new FileHelper(s3Service);
+			String fileName = fileHelper.saveImageAndReturnImageNameInS3(file);
+			// After successful storing the file save product obj with fileName
 
-//		if (productService.insertProduct(product) != null) {
-//			// SUCCESS
-		return "product save";
-//		} else {
-//			// SOMETHING WRONG
-//			return "something went wrong";
-//		}
+			product.setProductImage(fileName);
+			if (productService.insertProduct(product) != null) {
+				// SUCCESS
+				return "product save";
+			} else {
+				// SOMETHING WRONG
+				return "something went wrong";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "something went wrong";
+		}
 
 	}
 }
