@@ -85,6 +85,7 @@ table tr td img:hover {
 		</div> -->
 
 		<!-- END ALERTS -->
+
 		<table class="table text-center">
 			<tr>
 				<th>Image</th>
@@ -94,8 +95,7 @@ table tr td img:hover {
 				<th colspan="3">Action</th>
 			</tr>
 
-			<tbody>
-			<tbody>
+			<tbody th:if="${#lists.size(products)} != 0 ">
 				<tr th:each="product : ${products}">
 					<td><img th:src="@{${product.productImage}}"
 						alt="Product Image"></td>
@@ -116,7 +116,12 @@ table tr td img:hover {
 					</a></td>
 				</tr>
 			</tbody>
-			</tbody>
+			<tfoot th:unless="${#lists.size(products)} != 0 ">
+				<tr>
+					<td colspan="7" class="p-5"><h3 class="alert alert-danger"
+							role="alert">Products not available</h3></td>
+				</tr>
+			</tfoot>
 
 		</table>
 

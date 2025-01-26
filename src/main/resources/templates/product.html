@@ -44,7 +44,10 @@
 		</div>
 
 		<section th:unless="${product != null}">
-			<h1>Product Not Found</h1>
+			<div class="alert alert-danger text-center" role="alert">
+				<h1>OOPS!..</h1>
+				<p>Product is no longer available</p>
+			</div>
 		</section>
 	</div>
 
