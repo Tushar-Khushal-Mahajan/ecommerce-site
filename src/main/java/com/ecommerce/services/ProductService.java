@@ -34,4 +34,8 @@ public class ProductService {
 		return prodRepository.findById(prodId).orElse(null);
 	}
 
+	public void deleteProductById(String productId) {
+		prodRepository.deleteById(productId);
+	}
+
 }

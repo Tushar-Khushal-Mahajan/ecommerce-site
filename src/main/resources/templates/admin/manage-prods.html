@@ -109,8 +109,10 @@ table tr td img:hover {
 					</a></td>
 					<td><a href="">Edit <i class="fa fa-external-link"
 							aria-hidden="true"></i></a></td>
-					<td><a href="" class="text-danger">Delete <i
-							class="fa fa-trash-o" aria-hidden="true"></i>
+					<td><a
+						th:href="@{./product/{productId}/delete(productId=${product.getProductId()})}"
+						class="text-danger">Delete <i class="fa fa-trash-o"
+							aria-hidden="true"></i>
 					</a></td>
 				</tr>
 			</tbody>

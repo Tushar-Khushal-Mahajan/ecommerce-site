@@ -8,9 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ecommerce.entities.Product;
@@ -100,5 +102,18 @@ public class AdminController {
 		model.addAttribute("products", allProducts);
 
 		return "admin/manage-prods";
+	}
+
+	@GetMapping("/product/{productID}/delete")
+	public String deleteObject(@PathVariable("productID") String productId) {
+
+		Product product = productService.getProdById(productId);
+		String fileName = product.getProductImage().replace(bucketUrl, "");
+
+		String deleteFile = s3Service.deleteFile(fileName);
+
+		productService.deleteProductById(productId);
+
+		return "redirect:/admin/manageProds";
 	}
 }
