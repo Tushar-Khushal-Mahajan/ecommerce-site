@@ -35,7 +35,7 @@ body {
 	background-color: #495057;
 }
 
-.form-container {
+.product-container {
 	flex-grow: 1;
 	padding: 20px;
 	overflow-y: auto;
@@ -48,10 +48,10 @@ body {
 		<a th:href="@{add-product}">Add Product</a> <a
 			th:href="@{manageProds}">Manage Products</a>
 	</div>
-	<div class="form-container">
+	<div class="product-container">
 
 		<!-- ALERTS -->
-		<div th:if="${STATUS} == SAVE"
+		<!-- <div th:if="${STATUS} == SAVE"
 			class="alert alert-success alert-dismissible fade show" role="alert">
 			PRODUCT SAVED..
 			<button type="button" class="close" data-dismiss="alert"
@@ -67,48 +67,11 @@ body {
 				aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 			</button>
-		</div>
+		</div> -->
 
 		<!-- END ALERTS -->
 
-		<h2>Add Product</h2>
-		<form th:action="@{/admin/Saveproduct}" th:object="${product}"
-			method="post" enctype="multipart/form-data">
-			<div class="mb-3">
-				<label for="productName" class="form-label">Product Name</label> <input
-					type="text" class="form-control" id="productName"
-					th:field="*{productName}" placeholder="Enter product name" required>
-			</div>
-			<div class="mb-3">
-				<label for="productCategory" class="form-label">Product
-					Category</label> <select class="form-select" id="productCategory"
-					th:field="*{productCategory}" required>
-					<option value="electronics">Electronics</option>
-					<option value="clothing">Clothing</option>
-					<option value="home">Home</option>
-					<option value="beauty">Beauty</option>
-				</select>
-			</div>
-			<div class="mb-3">
-				<label for="productDesc" class="form-label">Product
-					Description</label>
-				<textarea class="form-control" id="productDesc" rows="4"
-					th:field="*{productDescription}"
-					placeholder="Enter product description" required></textarea>
-			</div>
-			<div class="mb-3">
-				<label for="productImage" class="form-label">Product Image</label> <input
-					type="file" class="form-control" name="img" id="productImage"
-					required>
-			</div>
-			<div class="mb-3">
-				<label for="productPrice" class="form-label">Product Price</label> <input
-					type="number" class="form-control" id="productPrice"
-					placeholder="Enter product price" th:field="*{productPrice}"
-					required>
-			</div>
-			<button type="submit" class="btn btn-primary">Add Product</button>
-		</form>
+
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

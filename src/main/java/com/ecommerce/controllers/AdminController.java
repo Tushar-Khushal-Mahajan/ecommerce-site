@@ -89,4 +89,10 @@ public class AdminController {
 		return "redirect:add-product?status=" + parameter.toString();
 
 	}
+	
+	
+	@GetMapping("/manageProds")
+	public String manageProducts() {
+		return "admin/manage-prods";
+	}
 }
