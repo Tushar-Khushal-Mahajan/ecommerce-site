@@ -7,8 +7,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.model.DeleteObjectRequest;
+import software.amazon.awssdk.services.s3.model.DeleteObjectResponse;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 import software.amazon.awssdk.services.s3.model.PutObjectResponse;
+import software.amazon.awssdk.services.s3.model.S3Exception;
 
 @Service
 public class AmazonS3Service {
@@ -34,5 +37,19 @@ public class AmazonS3Service {
 		PutObjectRequest putObjectRequest = PutObjectRequest.builder().bucket(bucketName).key(fileName).build();
 
 		return s3Client.putObject(putObjectRequest, path);
+	}
+
+	public String deleteFile(String fileName) {
+		try {
+			DeleteObjectRequest deleteObjectRequest = DeleteObjectRequest.builder().bucket(bucketName).key(fileName)
+					.build();
+
+			DeleteObjectResponse deleteObjectResponse = s3Client.deleteObject(deleteObjectRequest);
+
+			return "File '" + fileName + "' deleted successfully from bucket '" + bucketName + "'.";
+		} catch (S3Exception e) {
+			throw new RuntimeException(
+					"Failed to delete file '" + fileName + "' from bucket '" + bucketName + "': " + e.getMessage(), e);
+		}
 	}
 }
