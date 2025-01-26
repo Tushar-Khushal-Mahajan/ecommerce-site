@@ -28,6 +28,7 @@ public class Product {
 	private String productId;
 	private String productName;
 	private String productDescription;
+	private int priceWithoutDisc;
 	private int productPrice;
 	private String productImage;
 	private String productCategory;

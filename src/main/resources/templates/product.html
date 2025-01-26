@@ -2,107 +2,79 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Details</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
-  <link rel="stylesheet" th:href="@{/css/commons/style.css}">
-  <link rel="stylesheet" th:href="@{/css/navbar.css}">
-  <link rel="stylesheet" th:href="@{/css/product.css}">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Details</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+<link rel="stylesheet" th:href="@{/css/commons/style.css}">
+<link rel="stylesheet" th:href="@{/css/navbar.css}">
+<link rel="stylesheet" th:href="@{/css/product.css}">
 </head>
 
 <body>
-  <!-- Navbar -->
-  <div th:replace="components/navbar :: navbar"></div>
-  <!-- END NAVABR -->
+	<!-- Navbar -->
+	<div th:replace="components/navbar :: navbar"></div>
+	<!-- END NAVABR -->
 
-  <div class="mt">
-    <div class="alert alert-info alert-dismissible fade show" role="alert">
-      <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    <div class="product-card mycontainer">
-      <div class="imgsection">
-        <img th:src="@{/images/computer-img.png}" alt="">
-      </div>
-      <div class="detailsection">
-        <h3>This is Product</h3>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto sint illo ducimus pariatur enim. Aperiam,
-          facilis, repellendus et magnam veritatis accusamus, id corrupti architecto eos nemo dolore in optio obcaecati!
-        </p>
-        <b>100rs</b> <del class="text-secondary bold">150rs</del>
+	<div class="mt">
+		<div class="alert alert-info alert-dismissible fade show" role="alert">
+			<strong>Holy guacamole!</strong> You should check in on some of those
+			fields below.
+			<button type="button" class="btn-close" data-bs-dismiss="alert"
+				aria-label="Close"></button>
+		</div>
+		<div th:if="${product != null}" class="product-card mycontainer">
 
-        <div class="mt-5">
-          <button class="btn btn-primary me-3">Buy</button>
-          <button class="btn btn-warning">Add To Cart</button>
-        </div>
-      </div>
-    </div>
-  </div>
+			<div class="imgsection">
+				<img th:src="@{${product.productImage}}" alt="">
+			</div>
+			<div class="detailsection">
+				<h3 th:text="${product.getProductName()}"></h3>
+				<p th:text="${product.getProductDescription()}"></p>
+				<b th:text="${product.getProductPrice()} + rs"></b>
+				<del class="text-secondary bold"
+					th:text="${product.getPriceWithoutDisc()} + rs"></del>
 
-  <div class="mycontainer mt-5 similer-items">
-    <h3 class="">Similar Items</h3>
+				<div class="mt-5">
+					<button class="btn btn-primary me-3">Buy</button>
+					<button class="btn btn-warning">Add To Cart</button>
+				</div>
+			</div>
+		</div>
+
+		<section th:unless="${product != null}">
+			<h1>Product Not Found</h1>
+		</section>
+	</div>
+
+	<div class="mycontainer mt-5 similer-items">
+		<h3 class="">Similar Items</h3>
 
 
-    <section class="mycontainer card-container">
-      <div class="cards">
-        <div class="img-section">
-          <img th:src="@{/images/computer-img.png}" alt="">
-        </div>
-        <div class="body-section">
-          <p>This is content of 1st card</p>
-          <b>100rs</b> <del><b class="text-secondary">150rs</b></del>
-        </div>
-      </div>
-      <div class="cards">
-        <div class="img-section">
-          <img th:src="@{/images/laptop-img.png}" alt="">
-        </div>
-        <div class="body-section">
-          <p>This is content of 1st card</p>
-          <b>100rs</b> <del><b class="text-secondary">150rs</b></del>
-        </div>
-      </div>
-      <div class="cards">
-        <div class="img-section">
-          <img th:src="@{/images/mobile-img.png}" alt="">
-        </div>
-        <div class="body-section">
-          <p>This is content of 1st card</p>
-          <b>100rs</b> <del><b class="text-secondary">150rs</b></del>
-        </div>
-      </div>
-      <div class="cards">
-        <div class="img-section">
-          <img th:src="@{/images/computer-img.png}" alt="">
-        </div>
-        <div class="body-section">
-          <p>This is content of 1st card</p>
-          <b>100rs</b> <del><b class="text-secondary">150rs</b></del>
-        </div>
-      </div>
-      <div class="cards">
-        <div class="img-section">
-          <img th:src="@{/images/computer-img.png}" alt="">
-        </div>
-        <div class="body-section">
-          <p>This is content of 1st card</p>
-          <b>100rs</b> <del><b class="text-secondary">150rs</b></del>
-        </div>
-      </div>
-      <div class="cards">
-        <div class="img-section">
-          <img th:src="@{/images/computer-img.png}" alt="">
-        </div>
-        <div class="body-section">
-          <p>This is content of 1st card</p>
-          <b>100rs</b> <del><b class="text-secondary">150rs</b></del>
-        </div>
-      </div>
-    </section>
-  </div>
+		<section class="mycontainer card-container">
+			<a th:href="@{./{product}(product = ${product.productId})}"
+				class="cards" th:each="product : ${allProducts}">
+				<div class="img-section">
+					<img th:src="@{${product.getProductImage()}}" alt="">
+				</div>
+				<div class="body-section">
+					<p>
+						<b th:text="${product.getProductName()}"></b>
+					</p>
+					<p th:text="${product.getProductDescription()}"></p>
+					<b th:text="${product.getProductPrice()}+rs"></b>
+					<del>
+						<b class="text-secondary"
+							th:text="${product.getPriceWithoutDisc()}"></b>
+					</del>
+				</div>
+			</a>
+		</section>
+	</div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
 </body>
 

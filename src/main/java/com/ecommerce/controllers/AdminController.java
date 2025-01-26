@@ -1,6 +1,7 @@
 package com.ecommerce.controllers;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -89,10 +90,15 @@ public class AdminController {
 		return "redirect:add-product?status=" + parameter.toString();
 
 	}
-	
-	
+
 	@GetMapping("/manageProds")
-	public String manageProducts() {
+	public String manageProducts(Model model) {
+
+		List<Product> allProducts = productService.getAllProducts();
+		System.out.println(allProducts);
+
+		model.addAttribute("products", allProducts);
+
 		return "admin/manage-prods";
 	}
 }

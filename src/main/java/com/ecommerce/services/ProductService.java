@@ -31,8 +31,7 @@ public class ProductService {
 	}
 
 	public Product getProdById(String prodId) {
-		return prodRepository.findById(prodId)
-				.orElseThrow(() -> new ResourceNotFound("Product with id not found :" + prodId));
+		return prodRepository.findById(prodId).orElse(null);
 	}
 
 }

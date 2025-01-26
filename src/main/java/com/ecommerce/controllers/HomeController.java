@@ -1,8 +1,13 @@
 package com.ecommerce.controllers;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import java.util.List;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import com.ecommerce.entities.Product;
 import com.ecommerce.entities.User;
 import com.ecommerce.services.ProductService;
 import com.ecommerce.services.UserService;
@@ -25,8 +30,16 @@ public class HomeController {
 		return "home";
 	}
 
-	@GetMapping("/product")
-	public String showProductPage() {
+	@GetMapping("/product/view/{productId}")
+	public String showProductPage(@PathVariable("productId") String productId, Model model) {
+
+		Product product = productService.getProdById(productId);
+		List<Product> allProducts = productService.getAllProducts();
+
+		model.addAttribute("product", product);
+		model.addAttribute("allProducts", allProducts);
+
+//		System.out.println("Product ID :" + productId + product);
 
 		return "product";
 	}
