@@ -2,6 +2,7 @@ package com.ecommerce.controllers;
 
 import java.io.IOException;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,10 +23,13 @@ public class AdminController {
 
 	private ProductService productService;
 	private AmazonS3Service s3Service;
+	private String bucketUrl;
 
-	public AdminController(ProductService productService, AmazonS3Service s3Service) {
+	public AdminController(ProductService productService, AmazonS3Service s3Service,
+			@Value("${bucket.url}") String bucketUrl) {
 		this.productService = productService;
 		this.s3Service = s3Service;
+		this.bucketUrl = bucketUrl;
 	}
 
 	@GetMapping
@@ -64,7 +68,8 @@ public class AdminController {
 			String fileName = fileHelper.saveImageAndReturnImageNameInS3(file);
 			// After successful storing the file save product obj with fileName
 
-			product.setProductImage(fileName);
+			System.out.println("Bucket url :" + bucketUrl);
+			product.setProductImage(bucketUrl + fileName);
 			if (productService.insertProduct(product) != null) {
 				// SUCCESS
 				parameter.setLength(0);
