@@ -22,10 +22,9 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		return http
-				.csrf(csrf -> csrf.disable())
-				.authorizeHttpRequests(c -> c
+				.csrf(csrf -> csrf.disable()).authorizeHttpRequests(c -> c
 						.requestMatchers("/admin/**").hasRole("ADMIN")
-						.requestMatchers("/user/**").hasRole("USER")
+						.requestMatchers("/user/**").hasAnyRole("USER", "ADMIN")
 						.anyRequest().permitAll())
 				.formLogin(Customizer.withDefaults()).build();
 	}

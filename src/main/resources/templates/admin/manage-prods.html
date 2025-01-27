@@ -100,8 +100,9 @@ table tr td img:hover {
 					<td><img th:src="@{${product.productImage}}"
 						alt="Product Image"></td>
 					<td th:text="${product.productName}">Fan</td>
-					<td th:text="${product.productDescription}">This is the best
-						fan ever</td>
+					<td
+						th:text="${product.productDescription != null and #strings.length(product.productDescription) > 30 ? #strings.substring(product.productDescription, 0, 30) + '...' : product.productDescription}">This
+						is the best fan ever</td>
 					<td th:text="${product.productCategory}">Electronics</td>
 					<td><a
 						th:href="@{/product/view/{productId}(productId=${product.productId})}">View

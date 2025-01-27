@@ -37,7 +37,9 @@
 					th:text="${product.getPriceWithoutDisc()} + rs"></del>
 
 				<div class="mt-5">
-					<button class="btn btn-primary me-3">Buy</button>
+					<a
+						th:href="@{/user/product/purchase/{productId}(productId=${product.getProductId()})}"
+						class="btn btn-primary me-3">Buy</a>
 					<button class="btn btn-warning">Add To Cart</button>
 				</div>
 			</div>

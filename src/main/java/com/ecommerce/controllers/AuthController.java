@@ -27,8 +27,8 @@ public class AuthController {
 
 		String encodePassword = encoder.encode("tushar123");
 
-		service.saveUser(User.builder().name("Bhuvan").username("bhuvan@gmail.com").password(encodePassword)
-				.role(Role.USER).build());
+		service.saveUser(User.builder().name("tushar").username("tushar@gmail.com").password(encodePassword)
+				.role(Role.ADMIN).build());
 
 		System.out.println("role of user = " + Role.USER);
 		return "login page";

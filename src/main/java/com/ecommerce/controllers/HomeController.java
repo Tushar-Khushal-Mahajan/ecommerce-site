@@ -23,7 +23,7 @@ public class HomeController {
 		this.productService = productService;
 	}
 
-	@GetMapping("")
+	@GetMapping
 	public String sayHello() {
 		User user = service.getUserByUsername("tushar@gmail.com");
 		System.out.println(user);
