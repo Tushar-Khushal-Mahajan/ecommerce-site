@@ -108,8 +108,10 @@ table tr td img:hover {
 						th:href="@{/product/view/{productId}(productId=${product.productId})}">View
 							<i class="fa fa-window-maximize" aria-hidden="true"></i>
 					</a></td>
-					<td><a href="">Edit <i class="fa fa-external-link"
-							aria-hidden="true"></i></a></td>
+					<td><a
+						th:href="@{./product/{productId}/update(productId=${product.getProductId()})}">Edit
+							<i class="fa fa-external-link" aria-hidden="true"></i>
+					</a></td>
 					<td><a
 						th:href="@{./product/{productId}/delete(productId=${product.getProductId()})}"
 						class="text-danger">Delete <i class="fa fa-trash-o"

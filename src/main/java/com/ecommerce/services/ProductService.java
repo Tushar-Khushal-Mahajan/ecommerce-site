@@ -21,7 +21,11 @@ public class ProductService {
 	// ----------------------------
 
 	public Product insertProduct(Product product) {
-		product.setProductId(UUID.randomUUID().toString());
+		System.out.println("PRODUCT ID : " + product.getProductId());
+
+		if (product.getProductId().equals("") || product.getProductId() == null) {
+			product.setProductId(UUID.randomUUID().toString());
+		}
 
 		return prodRepository.save(product);
 	}

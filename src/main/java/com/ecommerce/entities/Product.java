@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
@@ -26,7 +27,11 @@ public class Product {
 
 	@Id
 	private String productId;
+
+	@Column(length = 500)
 	private String productName;
+
+	@Column(length = 2000)
 	private String productDescription;
 	private int priceWithoutDisc;
 	private int productPrice;

@@ -18,18 +18,13 @@
 	<!-- END NAVABR -->
 
 	<div class="mt">
-		<div class="alert alert-info alert-dismissible fade show" role="alert">
-			<strong>Holy guacamole!</strong> You should check in on some of those
-			fields below.
-			<button type="button" class="btn-close" data-bs-dismiss="alert"
-				aria-label="Close"></button>
-		</div>
-		<div th:if="${product != null}" class="product-card mycontainer">
 
-			<div class="imgsection">
+		<div th:if="${product != null}" class="custom-card mycontainer">
+
+			<div class="custom-card-img">
 				<img th:src="@{${product.productImage}}" alt="">
 			</div>
-			<div class="detailsection">
+			<div class="custom-card-content">
 				<h3 th:text="${product.getProductName()}"></h3>
 				<p th:text="${product.getProductDescription()}"></p>
 				<b th:text="${product.getProductPrice()} + rs"></b>
@@ -65,9 +60,11 @@
 				</div>
 				<div class="body-section">
 					<p>
-						<b th:text="${product.getProductName()}"></b>
+						<b
+							th:text="${#strings.length(product.getProductName()) > 50 ? #strings.substring(product.getProductName(), 0, 50) + '...' : product.getProductName()}"></b>
 					</p>
-					<p th:text="${product.getProductDescription()}"></p>
+					<p
+						th:text="${#strings.length(product.getProductDescription()) > 100 ? #strings.substring(product.getProductDescription(), 0, 100) + '...' : product.getProductDescription()}"></p>
 					<b th:text="${product.getProductPrice()}+rs"></b>
 					<del>
 						<b class="text-secondary"

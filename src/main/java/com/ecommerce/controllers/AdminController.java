@@ -116,4 +116,19 @@ public class AdminController {
 
 		return "redirect:/admin/manageProds";
 	}
+
+	@GetMapping("/product/{productId}/update")
+//	@ResponseBody
+	public String updateProduct(@RequestParam(name = "status", required = false, defaultValue = "EMPTY") String status, 
+			@PathVariable("productId") String productId,
+			Model model) {
+
+		Product prod = productService.getProdById(productId);
+		
+		model.addAttribute("STATUS", status);
+		model.addAttribute("product", prod);
+		return "admin/add-prod";
+
+//		return "product Id :" + productId;
+	}
 }

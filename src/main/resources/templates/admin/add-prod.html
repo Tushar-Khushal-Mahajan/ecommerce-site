@@ -45,8 +45,8 @@ body {
 <body>
 	<div class="sidebar">
 		<h3>Admin Panel</h3>
-		<a th:href="@{add-product}">Add Product</a> <a
-			th:href="@{manageProds}">Manage Products</a>
+		<a th:href="@{/admin/add-product}">Add Product</a> <a
+			th:href="@{/admin/manageProds}">Manage Products</a>
 	</div>
 	<div class="form-container">
 
@@ -74,6 +74,7 @@ body {
 		<h2>Add Product</h2>
 		<form th:action="@{/admin/Saveproduct}" th:object="${product}"
 			method="post" enctype="multipart/form-data">
+			<input type="hidden" th:field="*{productId}" />
 			<div class="mb-3">
 				<label for="productName" class="form-label">Product Name</label> <input
 					type="text" class="form-control" id="productName"
@@ -113,7 +114,12 @@ body {
 					placeholder="Enter product price" th:field="*{productPrice}"
 					required>
 			</div>
-			<button type="submit" class="btn btn-primary">Add Product</button>
+			<button type="submit">
+				<span th:if="${#strings.isEmpty(product.productId)}"
+					class="btn btn-primary">Add Product</span> <span
+					th:unless="${#strings.isEmpty(product.productId)}"
+					class="btn btn-warning">Update Product</span>
+			</button>
 		</form>
 	</div>
 
