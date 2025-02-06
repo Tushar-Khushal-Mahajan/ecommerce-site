@@ -1,6 +1,7 @@
 package com.ecommerce.services;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
@@ -16,8 +17,17 @@ public class AddressService {
 		this.addrRepo = addrRepo;
 	}
 
+	public Address saveAddress(Address address) {
+		address.setAddrId(UUID.randomUUID().toString());
+		return addrRepo.save(address);
+	}
+
 	public List<Address> getAddrByUserId(String userId) {
 		return addrRepo.findByUser_UserId(userId);
+	}
+
+	public List<Address> getAddrByUserName(String username) {
+		return addrRepo.findByUser_Username(username);
 	}
 
 }

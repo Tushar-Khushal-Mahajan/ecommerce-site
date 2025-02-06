@@ -36,7 +36,9 @@
 
 </head>
 <body class="bg-gray-100 font-sans">
-	<div class="min-h-screen py-10 px-4">
+
+	<div class="min-h-screen py-10 px-4"
+		th:if="${products != null and #lists.size(products) > 0}">
 		<div class="flex justify-center">
 			<div
 				class="w-full max-w-5xl bg-white shadow-lg rounded-lg overflow-hidden flex flex-col md:flex-row">
@@ -46,30 +48,23 @@
 					<h2 class="text-2xl font-bold mb-4">Your Items</h2>
 					<div class="space-y-4">
 						<!-- Item Card 1 -->
-						<div class="border p-4 rounded-lg"
+						<div th:each="product : ${products}" class="border p-4 rounded-lg"
 							onclick="toggleCardDetails(event)">
 							<div class="flex items-center justify-between">
-								<h3 class="text-lg font-medium">Item 1</h3>
+								<h3 class="text-lg font-medium" th:text="${product.productName}"></h3>
 								<button>
 									<i class="fa fa-plus fa-lg" aria-hidden="true"></i>
 								</button>
 							</div>
 							<div id="item1Details" class="mt-4 hidden">
 								<p>
-									<strong>Name:</strong> Item 1
+									<strong>Price:</strong> <span th:text="${product.productPrice}"></span>
 								</p>
-								<p>
-									<strong>Description:</strong> This is a detailed description of
-									item 1.
-								</p>
-								<p>
-									<strong>Price:</strong> $20.00
-								</p>
-								<img src="https://via.placeholder.com/100" alt="Item 1 Image"
+								<img th:src="${product.productImage}" alt="Item 1 Image"
 									class="mt-2">
 							</div>
 						</div>
-						<div class="border p-4 rounded-lg"
+						<!-- <div class="border p-4 rounded-lg"
 							onclick="toggleCardDetails(event)">
 							<div class="flex items-center justify-between">
 								<h3 class="text-lg font-medium">Item 1</h3>
@@ -114,7 +109,7 @@
 								<img src="https://via.placeholder.com/100" alt="Item 1 Image"
 									class="mt-2">
 							</div>
-						</div>
+						</div> -->
 						<!-- Other item cards follow the same structure -->
 					</div>
 				</div>
@@ -125,25 +120,26 @@
 					<div class="space-y-4">
 						<div class="flex justify-between">
 							<p>Subtotal</p>
-							<p>$65.00</p>
+							<p th:text="${sub_total}"></p>
 						</div>
 						<div class="flex justify-between">
 							<p>GST (18%)</p>
-							<p>$11.70</p>
+							<p th:text="${gst_value}"></p>
 						</div>
 						<div class="flex justify-between">
 							<p>Delivery Charges</p>
-							<p>$5.00</p>
+							<p th:text="${delivery_charges}"></p>
 						</div>
 						<hr class="border-gray-300">
 						<div class="flex justify-between font-semibold text-lg">
 							<p>Total</p>
-							<p>$81.70</p>
+							<p th:text="${#numbers.formatDecimal(total, 1, 2)}"></p>
+
 						</div>
 					</div>
 					<button
-						class="w-full mt-6 bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700">Proceed
-						to Checkout</button>
+						class="w-full mt-6 bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700"
+						onClick="proceedPayment()">Proceed to Checkout</button>
 				</div>
 			</div>
 		</div>
@@ -155,15 +151,11 @@
 					<label class="block text-sm font-medium text-gray-700 mb-2">Saved
 						Addresses</label>
 					<div class="space-y-2">
-						<div class="flex items-center">
-							<input type="radio" id="address1" name="savedAddress"
-								class="mr-2"> <label for="address1"
-								class="text-gray-700">123 Main Street, Springfield</label>
-						</div>
-						<div class="flex items-center">
-							<input type="radio" id="address2" name="savedAddress"
-								class="mr-2"> <label for="address2"
-								class="text-gray-700">456 Elm Street, Shelbyville</label>
+						<div th:each="addr : ${addrs}" class="flex items-center">
+							<input type="radio" th:id="${addr.addrId}" name="savedAddress"
+								class="mr-2"> <label th:for="${addr.addrId}"
+								class="text-gray-700"
+								th:text="${addr.addr} +'|' + ${addr.mobile} "></label>
 						</div>
 					</div>
 				</div>
@@ -174,7 +166,7 @@
 
 			<!-- New Address Form -->
 			<div id="newAddressForm" class="mt-6 space-y-4 hidden">
-				<form>
+				<form th:action="@{/user/saveAddr}" method="POST">
 					<div>
 						<label for="mobile"
 							class="block text-sm font-medium text-gray-700">Mobile
@@ -198,5 +190,15 @@
 			</div>
 		</div>
 	</div>
+
+	<div th:unless="${products != null and #lists.size(products) > 0}">Oops
+		no products found</div>
+
+
+	<script>
+		function proceedPayment() {
+			alert("Payment success");
+		}
+	</script>
 </body>
 </html>

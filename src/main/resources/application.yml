@@ -2,6 +2,11 @@ spring:
   profiles:
     active: secret
 ---
+spring:
+    output:
+         ansi:
+            enabled: ALWAYS
+---
 bucket:
    url: https://tushartestingbucket.s3.eu-north-1.amazonaws.com/	
 ---
@@ -24,8 +29,3 @@ spring:
      thymeleaf:
           prefix: classpath:/templates/
           suffix: .html
-#			 spring.thymeleaf.prefix=classpath:/templates/
-#			 spring.thymeleaf.suffix=.html
-#			 spring.thymeleaf.mode=HTML
-#			 spring.thymeleaf.encoding=UTF-8
-#			 spring.thymeleaf.cache=false

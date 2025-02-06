@@ -11,4 +11,6 @@ import com.ecommerce.entities.Address;
 public interface AddressRepository extends JpaRepository<Address, String> {
 
 	List<Address> findByUser_UserId(String userId);
+
+	List<Address> findByUser_Username(String username);
 }
