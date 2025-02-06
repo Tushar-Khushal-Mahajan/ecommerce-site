@@ -152,9 +152,9 @@
 						Addresses</label>
 					<div class="space-y-2">
 						<div th:each="addr : ${addrs}" class="flex items-center">
-							<input type="radio" th:id="${addr.addrId}" name="savedAddress"
-								class="mr-2"> <label th:for="${addr.addrId}"
-								class="text-gray-700"
+							<input type="radio" th:id="${addr.addrId}"
+								th:value="${addr.addrId}" name="savedAddress" class="mr-2">
+							<label th:for="${addr.addrId}" class="text-gray-700"
 								th:text="${addr.addr} +'|' + ${addr.mobile} "></label>
 						</div>
 					</div>
@@ -197,7 +197,25 @@
 
 	<script>
 		function proceedPayment() {
-			alert("Payment success");
+			let addrs = document.getElementsByName("savedAddress");
+			
+			
+			let addrId = 0;
+			
+			console.log(addrs);
+			addrs.forEach(e => {
+				if(e.checked){
+					console.log(e.value);
+					addrId = e.value;
+					return;
+				}	
+			});
+
+			if(addrId === 0){
+				alert("Plese select a delivery address");
+			}else{
+				alert("Success");
+			}
 		}
 	</script>
 </body>
