@@ -40,8 +40,8 @@ public class User implements UserDetails {
 	@Enumerated(EnumType.STRING)
 	private Role role;
 
-	@ManyToMany(mappedBy = "users", cascade = CascadeType.ALL)
-	private List<Product> buyedProducts;
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<BuyProduct> buyedProducts;
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Address> address = new ArrayList<Address>();

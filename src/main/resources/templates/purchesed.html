@@ -1,40 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Purchase Window</title>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" th:href="@{/css/purchased.css}">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
-	function toggleAddressForm(show) {
-		const formSection = document.getElementById('newAddressForm');
-		formSection.style.display = show ? 'block' : 'none';
-	}
-
-	function toggleCardDetails(event) {
-
-		if (event.target.classList["value"] == "fa fa-minus fa-lg"
-				|| event.target.classList["value"] == "fa fa-plus fa-lg") {
-
-			const details = event.target.closest('.border').querySelector(
-					'.mt-4');
-			const icon = event.target.closest('button').querySelector('i');
-
-			details.classList.toggle('hidden');
-
-			if (icon.classList.contains("fa-plus")) {
-				icon.classList.replace("fa-plus", "fa-minus");
-			} else {
-				icon.classList.replace("fa-minus", "fa-plus");
-			}
+		function toggleAddressForm(show) {
+			const formSection = document.getElementById('newAddressForm');
+			formSection.style.display = show ? 'block' : 'none';
 		}
 
-	}
-</script>
+		function toggleCardDetails(event) {
+
+			if (event.target.classList["value"] == "fa fa-minus fa-lg"
+				|| event.target.classList["value"] == "fa fa-plus fa-lg") {
+
+				const details = event.target.closest('.border').querySelector(
+					'.mt-4');
+				const icon = event.target.closest('button').querySelector('i');
+
+				details.classList.toggle('hidden');
+
+				if (icon.classList.contains("fa-plus")) {
+					icon.classList.replace("fa-plus", "fa-minus");
+				} else {
+					icon.classList.replace("fa-minus", "fa-plus");
+				}
+			}
+
+		}
+	</script>
 
 </head>
+
 <body class="bg-gray-100 font-sans">
 
 	<div class="min-h-screen py-10 px-4"
@@ -61,7 +65,7 @@
 									<strong>Price:</strong> <span th:text="${product.productPrice}"></span>
 								</p>
 								<img th:src="${product.productImage}" alt="Item 1 Image"
-									class="mt-2">
+									class="mt-2 productImage">
 							</div>
 						</div>
 						<!-- <div class="border p-4 rounded-lg"
@@ -198,25 +202,25 @@
 	<script>
 		function proceedPayment() {
 			let addrs = document.getElementsByName("savedAddress");
-			
-			
+
+
 			let addrId = 0;
-			
-			console.log(addrs);
+
 			addrs.forEach(e => {
-				if(e.checked){
+				if (e.checked) {
 					console.log(e.value);
 					addrId = e.value;
 					return;
-				}	
+				}
 			});
 
-			if(addrId === 0){
+			if (addrId === 0) {
 				alert("Plese select a delivery address");
-			}else{
+			} else {
 				alert("Success");
 			}
 		}
 	</script>
 </body>
+
 </html>

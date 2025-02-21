@@ -37,8 +37,4 @@ public class Product {
 	private int productPrice;
 	private String productImage;
 	private String productCategory;
-
-	@ManyToMany(cascade = CascadeType.ALL)
-	private List<User> users = new ArrayList<User>();
-
 }
