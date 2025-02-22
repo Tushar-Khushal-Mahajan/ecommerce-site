@@ -37,4 +37,6 @@ public class BuyProduct {
 	@JoinColumn(name = "addr_id")
 	private Address address;
 
+	private double totalPrice;
+
 }

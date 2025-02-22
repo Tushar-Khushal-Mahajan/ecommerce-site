@@ -21,6 +21,10 @@ public class AddressService {
 		address.setAddrId(UUID.randomUUID().toString());
 		return addrRepo.save(address);
 	}
+	
+	public Address getAddrById(String addrId) {
+		return addrRepo.findById(addrId).orElse(null);
+	}
 
 	public List<Address> getAddrByUserId(String userId) {
 		return addrRepo.findByUser_UserId(userId);
